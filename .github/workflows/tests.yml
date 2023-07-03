@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Create project
         run: |
-          composer create-project --ignore-platform-reqs --repository-url=https://github.com/[USERNAME]/drupal-contrib mstrelan/drupal-contrib:dev-${{ github.ref_name }}
+          composer create-project --ignore-platform-reqs ${{ github.repository }}:dev-${{ github.ref_name }}
 
       - name: Initialise environment
         run: |
