@@ -17,12 +17,15 @@ jobs:
     steps:
       - name: Create project
         run: |
-          composer create-project --ignore-platform-reqs ${{ github.repository }}:dev-${{ github.ref_name }}
+          composer create-project --ignore-platform-reqs --repository-url=https://github.com/${{ github.repository }} mstrelan/drupal-contrib:dev-${{ github.ref_name }}
 
       - name: Initialise environment
         run: |
           cd drupal-contrib
           make ${{ matrix.drupal_version }}
+
+      - name: Setup homebrew
+        uses: Homebrew/actions/setup-homebrew@master
 
       - name: Setup bats
         run: |
